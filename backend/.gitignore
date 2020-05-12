@@ -1,3 +1,5 @@
 .DS_*
 /node_modules
 /dist
+/tmp/*
+!/tmp/.gitkeep
