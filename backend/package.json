@@ -5,18 +5,26 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "dev:server": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts"
+    "dev:server": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "keywords": [],
   "author": "João Paulo Fricks",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "date-fns": "^2.12.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.0.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.24",
     "uuidv4": "^6.0.7"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.6",
+    "@types/jsonwebtoken": "^8.3.9",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
     "eslint": "^6.8.0",

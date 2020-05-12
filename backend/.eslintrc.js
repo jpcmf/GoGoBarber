@@ -4,36 +4,35 @@ module.exports = {
     node: true,
   },
   extends: [
-    "airbnb-base",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    'airbnb-base',
+    'plugin:@typescript-eslint/recommended',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
   ],
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly",
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
   },
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: "module",
+    sourceType: 'module',
   },
-  plugins: [
-    "@typescript-eslint",
-    "prettier"
-  ],
+  plugins: ['@typescript-eslint', 'prettier'],
   rules: {
-    "prettier/prettier": "error",
-    "import/extensions": [
-      "error",
-      "ignorePackages",
+    'prettier/prettier': 'error',
+    'class-methods-use-this': 'off',
+    '@typescript-eslint/camelcase': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
       {
-        ts: "never",
+        ts: 'never',
       },
     ],
   },
   settings: {
-    "import/resolver": {
+    'import/resolver': {
       typescript: {},
     },
   },
