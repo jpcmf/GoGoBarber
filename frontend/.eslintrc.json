@@ -39,7 +39,8 @@
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "no-unused-expressions": "off"
   },
   "settings": {
     "import/resolver": {
