@@ -47,40 +47,6 @@ export const Content = styled.div`
       margin-bottom: 24px;
     }
 
-    input {
-      background-color: ${colors.f_input_bg};
-      border-radius: 10px;
-      border: solid 2px ${colors.f_input_bd};
-      color: ${colors.f_input_txt};
-      padding: 16px;
-      width: 100%;
-
-      &::placeholder {
-        color: ${colors.f_input_ph};
-      }
-
-      + input {
-        margin-top: 8px;
-      }
-    }
-
-    button {
-      background-color: ${colors.f_btn_bg};
-      border-radius: 10px;
-      border: 0;
-      color: ${colors.f_btn_txt};
-      font-weight: 600;
-      height: 56px;
-      margin-top: 16px;
-      padding: 0 16px;
-      transition: background-color 300ms ease;
-      width: 100%;
-
-      &:hover {
-        background-color: ${(props) => props && shade(0.2, colors.f_btn_bg)};
-      }
-    }
-
     a {
       color: ${colors.f_lnk_aux};
       display: inline-block;
@@ -89,7 +55,7 @@ export const Content = styled.div`
       transition: color 300ms ease;
 
       &:hover {
-        color: ${(props) => props && shade(0.2, colors.f_lnk_aux)};
+        color: ${(props): string => props && shade(0.2, colors.f_lnk_aux)};
       }
     }
   }
