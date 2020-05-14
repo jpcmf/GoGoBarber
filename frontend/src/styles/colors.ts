@@ -10,7 +10,7 @@ export default {
   secondary: '#312e38',
   success: '#31DB7D',
   white: '#fff',
-  brand: '#1a90e8',
+  brand: '#ff9000',
   // form variables
   f_input_bg: '#232129',
   f_input_bd: '#232129',
