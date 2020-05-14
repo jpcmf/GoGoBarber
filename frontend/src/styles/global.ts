@@ -24,7 +24,6 @@ export default createGlobalStyle`
     }
 
     body, input, button {
-      color: ${colors.white};
       font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
       font-size: 16px;
     }

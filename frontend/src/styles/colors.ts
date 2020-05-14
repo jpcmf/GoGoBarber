@@ -11,4 +11,13 @@ export default {
   success: '#31DB7D',
   white: '#fff',
   brand: '#1a90e8',
+  // form variables
+  f_input_bg: '#232129',
+  f_input_bd: '#232129',
+  f_input_txt: '#f4ede8',
+  f_input_ph: '#666360',
+  f_btn_bg: '#ff9000',
+  f_btn_txt: '#312e38',
+  f_lnk_aux: '#f4ede8',
+  f_lnk_txt: '#ff9000',
 };
