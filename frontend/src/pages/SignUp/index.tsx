@@ -14,6 +14,7 @@ import { Container, Content, Background } from './styles';
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+
   const handleSubmit = useCallback(async (data: object) => {
     try {
       formRef.current?.setErrors({});
@@ -29,7 +30,7 @@ const SignUp: React.FC = () => {
           ),
         password: Yup.string().min(
           6,
-          'O campo Password deve ter no mínimo 6 digitos.',
+          'O campo Senha deve ter no mínimo 6 digitos.',
         ),
       });
 
