@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
-import background from '../../assets/sign-in-background.png';
+import background from '../../assets/sign-up-background.png';
 
 import colors from '../../styles/colors';
 
@@ -21,7 +21,7 @@ export const Content = styled.div`
   width: 100%;
 
   > a {
-    color: ${colors.lnkTxt};
+    color: ${colors.lnkAux};
     display: inline-flex;
     align-items: center;
     margin-top: 24px;

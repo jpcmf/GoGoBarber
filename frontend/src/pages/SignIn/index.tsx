@@ -35,7 +35,7 @@ const SignIn: React.FC = () => {
         </a>
       </Content>
 
-      <Background>a</Background>
+      <Background />
     </Container>
   );
 };
