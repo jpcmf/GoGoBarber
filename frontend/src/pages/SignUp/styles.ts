@@ -21,7 +21,7 @@ export const Content = styled.div`
   width: 100%;
 
   > a {
-    color: ${colors.f_lnk_aux};
+    color: ${colors.lnkAux};
     display: inline-flex;
     align-items: center;
     margin-top: 24px;
@@ -29,7 +29,7 @@ export const Content = styled.div`
     transition: color 300ms ease;
 
     &:hover {
-      color: ${(props) => props && shade(0.2, colors.f_lnk_txt)};
+      color: ${(props) => props && shade(0.2, colors.lnkTxt)};
     }
 
     svg {
@@ -48,14 +48,14 @@ export const Content = styled.div`
     }
 
     a {
-      color: ${colors.f_lnk_aux};
+      color: ${colors.lnkAux};
       display: inline-block;
       margin-top: 24px;
       text-decoration: none;
       transition: color 300ms ease;
 
       &:hover {
-        color: ${(props): string => props && shade(0.2, colors.f_lnk_aux)};
+        color: ${(props): string => props && shade(0.2, colors.lnkAux)};
       }
     }
   }

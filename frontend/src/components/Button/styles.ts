@@ -4,10 +4,10 @@ import { shade } from 'polished';
 import colors from '../../styles/colors';
 
 export const Container = styled.button`
-  background-color: ${colors.f_btn_bg};
+  background-color: ${colors.btnBg};
   border-radius: 10px;
   border: 0;
-  color: ${colors.f_btn_txt};
+  color: ${colors.btnTxt};
   font-weight: 600;
   height: 56px;
   margin-top: 16px;
@@ -16,7 +16,6 @@ export const Container = styled.button`
   width: 100%;
 
   &:hover {
-    background-color: ${(props): string =>
-      props && shade(0.2, colors.f_btn_bg)};
+    background-color: ${(props): string => props && shade(0.2, colors.btnBg)};
   }
 `;

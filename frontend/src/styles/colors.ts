@@ -1,6 +1,6 @@
 export default {
   black: '#000',
-  danger: '#de3b3b',
+  danger: '#c53030',
   dark: '#444',
   darkGrey: '#999',
   grey: '#ddd',
@@ -12,12 +12,14 @@ export default {
   white: '#fff',
   brand: '#ff9000',
   // form variables
-  f_input_bg: '#232129',
-  f_input_bd: '#232129',
-  f_input_txt: '#f4ede8',
-  f_input_ph: '#666360',
-  f_btn_bg: '#ff9000',
-  f_btn_txt: '#312e38',
-  f_lnk_aux: '#f4ede8',
-  f_lnk_txt: '#ff9000',
+  inputBg: '#232129',
+  inputBd: '#232129',
+  inputTxt: '#f4ede8',
+  inputPh: '#666360',
+  btnBg: '#ff9000',
+  btnTxt: '#312e38',
+  lnkAux: '#f4ede8',
+  lnkTxt: '#ff9000',
+  // tooltip
+  ttTxt: '#312e38',
 };
