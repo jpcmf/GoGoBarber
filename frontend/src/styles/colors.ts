@@ -22,4 +22,11 @@ export default {
   lnkTxt: '#ff9000',
   // tooltip
   ttTxt: '#312e38',
+  // toast
+  toBg: '#ebf8ff',
+  toTxt: '#3172b7',
+  toSuccessBg: '#e6fffa',
+  toSuccessTxt: '#2e656a',
+  toErrorBg: '#fddede',
+  toErrorTxt: '#c53030',
 };

@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationsErrors';
 
 import { useAuth } from '../../context/AuthContext';
+import { useToast } from '../../context/ToastContext';
 
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 
@@ -23,6 +24,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { signIn } = useAuth();
+  const { addToast } = useToast();
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -44,14 +46,23 @@ const SignIn: React.FC = () => {
           abortEarly: false,
         });
 
-        signIn({ email: data.email, password: data.password });
+        await signIn({ email: data.email, password: data.password });
       } catch (err) {
-        const errors = getValidationErrors(err);
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
 
-        formRef.current?.setErrors(errors);
+          formRef.current?.setErrors(errors);
+        }
+
+        addToast({
+          type: 'error',
+          title: 'Erro na autenticação.',
+          description:
+            'Ocorreu um erro ao fazer login no GoBarber. Cheque se o e-mail e senha são válidos.',
+        });
       }
     },
-    [signIn],
+    [signIn, addToast],
   );
 
   return (
