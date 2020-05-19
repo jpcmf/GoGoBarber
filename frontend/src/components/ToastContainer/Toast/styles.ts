@@ -5,7 +5,7 @@ import colors from '../../../styles/colors';
 
 interface ContainerProps {
   type?: 'success' | 'error' | 'info';
-  hasDescription?: boolean;
+  hasdescription?: boolean;
 }
 
 const toastTypeVariations = {
@@ -63,7 +63,7 @@ export const Container = styled(animated.div)<ContainerProps>`
   }
 
   ${(props) =>
-    !props.hasDescription &&
+    !props.hasdescription &&
     css`
       align-items: center;
 

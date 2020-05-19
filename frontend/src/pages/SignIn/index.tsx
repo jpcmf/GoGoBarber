@@ -3,10 +3,11 @@ import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import getValidationErrors from '../../utils/getValidationsErrors';
+import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
+import getValidationErrors from '../../utils/getValidationsErrors';
 
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 
@@ -85,10 +86,15 @@ const SignIn: React.FC = () => {
           <a href="/forgot">Esqueci minha senha</a>
         </Form>
 
-        <a href="/forgot">
+        <Link to="/signup">
           <FiLogIn />
           Criar conta
-        </a>
+        </Link>
+
+        {/* <a href="/forgot">
+          <FiLogIn />
+          Criar conta
+        </a> */}
       </Content>
 
       <Background />
