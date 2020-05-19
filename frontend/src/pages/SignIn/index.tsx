@@ -61,7 +61,7 @@ const SignIn: React.FC = () => {
 
         addToast({
           type: 'error',
-          title: 'Erro na autenticação.',
+          title: 'Erro na autenticação. 😕',
           description:
             'Ocorreu um erro ao fazer login no GoBarber. Cheque se o e-mail e senha são válidos.',
         });

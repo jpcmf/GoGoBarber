@@ -60,7 +60,7 @@ const SignUp: React.FC = () => {
 
         addToast({
           type: 'success',
-          title: 'Cadastro realizado.',
+          title: 'Cadastro realizado. 😃',
           description: 'Você já pode fazer seu login no GoBarber.',
         });
       } catch (err) {
@@ -72,9 +72,9 @@ const SignUp: React.FC = () => {
 
         addToast({
           type: 'error',
-          title: 'Erro no cadastro.',
+          title: 'Erro no cadastro. 😕',
           description:
-            'Ocorreu um erro ao fazer o cadastro no GoBarber. Tente novamente. 😂',
+            'Ocorreu um erro ao fazer o cadastro no GoBarber. Tente novamente.',
         });
       }
     },
