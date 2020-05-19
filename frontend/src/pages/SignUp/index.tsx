@@ -3,8 +3,11 @@ import { FiArrowLeft, FiMail, FiUser, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
+import api from '../../services/api';
+
+import { useToast } from '../../context/ToastContext';
 import getValidationErrors from '../../utils/getValidationsErrors';
 
 import { ReactComponent as Logo } from '../../assets/logo.svg';
@@ -14,37 +17,69 @@ import Button from '../../components/Button';
 
 import { Container, Content, AnimationContainer, Background } from './styles';
 
+interface SignUpFormData {
+  name: string;
+  email: string;
+  password: string;
+}
+
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback(async (data: object) => {
-    try {
-      formRef.current?.setErrors({});
+  const { addToast } = useToast();
 
-      const schema = Yup.object().shape({
-        name: Yup.string().required(
-          'O campo Nome é de preenchimento obrigatório.',
-        ),
-        email: Yup.string()
-          .required('O campo E-mail é de preenchimento obrigatório.')
-          .email(
-            'O endereço usado no campo E-mail não é um endereço de e-mail válido.',
+  const history = useHistory();
+
+  const handleSubmit = useCallback(
+    async (data: SignUpFormData) => {
+      try {
+        formRef.current?.setErrors({});
+
+        const schema = Yup.object().shape({
+          name: Yup.string().required(
+            'O campo Nome é de preenchimento obrigatório.',
           ),
-        password: Yup.string().min(
-          6,
-          'O campo Senha deve ter no mínimo 6 digitos.',
-        ),
-      });
+          email: Yup.string()
+            .required('O campo E-mail é de preenchimento obrigatório.')
+            .email(
+              'O endereço usado no campo E-mail não é um endereço de e-mail válido.',
+            ),
+          password: Yup.string().min(
+            6,
+            'O campo Senha deve ter no mínimo 6 digitos.',
+          ),
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
-    } catch (err) {
-      const errors = getValidationErrors(err);
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      formRef.current?.setErrors(errors);
-    }
-  }, []);
+        await api.post('/users', data);
+
+        history.push('/');
+
+        addToast({
+          type: 'success',
+          title: 'Cadastro realizado. 😃',
+          description: 'Você já pode fazer seu login no GoBarber.',
+        });
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+
+          formRef.current?.setErrors(errors);
+        }
+
+        addToast({
+          type: 'error',
+          title: 'Erro no cadastro. 😕',
+          description:
+            'Ocorreu um erro ao fazer o cadastro no GoBarber. Tente novamente.',
+        });
+      }
+    },
+    [history, addToast],
+  );
 
   return (
     <Container>
