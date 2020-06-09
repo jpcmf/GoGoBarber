@@ -16,6 +16,12 @@ export const Container = styled.View<ContainerProps>`
   width: 100%;
 
   ${(props) =>
+    props.isErrored &&
+    css`
+      border-color: ${colors.danger};
+    `}
+
+  ${(props) =>
     props.isFocused &&
     css`
       border-color: ${colors.brand};

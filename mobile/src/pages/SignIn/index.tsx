@@ -6,14 +6,19 @@ import {
   KeyboardAvoidingView,
   Platform,
   TextInput,
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
+import * as Yup from 'yup';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+import getValidationErrors from '../../utils/getValidationsErrors';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+
+import { SignInFormData } from './interface';
 
 import logo from '../../assets/logo.png';
 import color from '../../styles/colors';
@@ -32,9 +37,42 @@ const SignIn: React.FC = () => {
   const passwordInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
 
-  const handleSignIn = useCallback((data: object) => {
-    console.log(data);
+  const handleSignIn = useCallback(async (data: SignInFormData) => {
+    try {
+      formRef.current?.setErrors({});
+
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .required('O campo E-mail é de preenchimento obrigatório.')
+          .email(
+            'O endereço usado no campo E-mail não é um endereço de e-mail válido.',
+          ),
+        password: Yup.string().required(
+          'O campo Senha é de preenchimento obrigatório.',
+        ),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      // await signIn({ email: data.email, password: data.password });
+
+      // history.push('/dashboard');
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+      }
+
+      Alert.alert(
+        'Erro na autenticação',
+        'Ocorreu um erro ao fazer login no GoBarber. Cheque se o e-mail e senha são válidos.',
+      );
+    }
   }, []);
+
   return (
     <>
       <KeyboardAvoidingView
