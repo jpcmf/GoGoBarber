@@ -15,6 +15,8 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import getValidationErrors from '../../utils/getValidationsErrors';
 
+import api from '../../services/api';
+
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
@@ -32,45 +34,55 @@ const SignUp: React.FC = () => {
   const emailInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
-  const handleSignUp = useCallback(async (data: SignUpFormData) => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSignUp = useCallback(
+    async (data: SignUpFormData) => {
+      try {
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        name: Yup.string().required(
-          'O campo Nome é de preenchimento obrigatório.',
-        ),
-        email: Yup.string()
-          .required('O campo E-mail é de preenchimento obrigatório.')
-          .email(
-            'O endereço usado no campo E-mail não é um endereço de e-mail válido.',
+        const schema = Yup.object().shape({
+          name: Yup.string().required(
+            'O campo Nome é de preenchimento obrigatório.',
           ),
-        password: Yup.string().min(
-          6,
-          'O campo Senha deve ter no mínimo 6 digitos.',
-        ),
-      });
+          email: Yup.string()
+            .required('O campo E-mail é de preenchimento obrigatório.')
+            .email(
+              'O endereço usado no campo E-mail não é um endereço de e-mail válido.',
+            ),
+          password: Yup.string().min(
+            6,
+            'O campo Senha deve ter no mínimo 6 digitos.',
+          ),
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      // await api.post('/users', data);
+        await api.post('/users', data);
 
-      // history.push('/');
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
+        Alert.alert(
+          'Cadastro realizado 😃.',
+          'Você já pode fazer seu login no GoBarber.',
+        );
 
-        formRef.current?.setErrors(errors);
+        navigation.navigate('SignIn');
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+
+          formRef.current?.setErrors(errors);
+
+          return;
+        }
+
+        Alert.alert(
+          'Erro no cadastro 😕.',
+          'Ocorreu um erro ao fazer o cadastro no GoBarber. Tente novamente.',
+        );
       }
-
-      Alert.alert(
-        'Erro no cadastro 😕.',
-        'Ocorreu um erro ao fazer o cadastro no GoBarber. Tente novamente.',
-      );
-    }
-  }, []);
+    },
+    [navigation],
+  );
 
   return (
     <>
