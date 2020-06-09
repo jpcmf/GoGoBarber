@@ -15,6 +15,8 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import getValidationErrors from '../../utils/getValidationsErrors';
 
+import { useAuth } from '../../context/AuthContext';
+
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
@@ -35,43 +37,49 @@ import {
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
+
   const navigation = useNavigation();
 
-  const handleSignIn = useCallback(async (data: SignInFormData) => {
-    try {
-      formRef.current?.setErrors({});
+  const { signIn } = useAuth();
 
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .required('O campo E-mail é de preenchimento obrigatório.')
-          .email(
-            'O endereço usado no campo E-mail não é um endereço de e-mail válido.',
+  const handleSignIn = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        formRef.current?.setErrors({});
+
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('O campo E-mail é de preenchimento obrigatório.')
+            .email(
+              'O endereço usado no campo E-mail não é um endereço de e-mail válido.',
+            ),
+          password: Yup.string().required(
+            'O campo Senha é de preenchimento obrigatório.',
           ),
-        password: Yup.string().required(
-          'O campo Senha é de preenchimento obrigatório.',
-        ),
-      });
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      // await signIn({ email: data.email, password: data.password });
+        await signIn({ email: data.email, password: data.password });
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
 
-      // history.push('/dashboard');
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
 
-        formRef.current?.setErrors(errors);
+          return;
+        }
+
+        Alert.alert(
+          'Erro na autenticação',
+          'Ocorreu um erro ao fazer login no GoBarber. Cheque se o e-mail e senha são válidos.',
+        );
       }
-
-      Alert.alert(
-        'Erro na autenticação',
-        'Ocorreu um erro ao fazer login no GoBarber. Cheque se o e-mail e senha são válidos.',
-      );
-    }
-  }, []);
+    },
+    [signIn],
+  );
 
   return (
     <>
