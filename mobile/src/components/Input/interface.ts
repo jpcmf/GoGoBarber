@@ -8,3 +8,11 @@ export interface InputProps extends TextInputProps {
 export interface InputValuesReference {
   value: string;
 }
+
+export interface InputRef {
+  focus(): void;
+}
+
+export interface ContainerProps {
+  isFocused: boolean;
+}
