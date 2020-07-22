@@ -1,4 +1,5 @@
 import User from '../infra/typeorm/entities/User';
+import UserToken from '../infra/typeorm/entities/UserToken';
 
 import ICreateUserDTO from '../dtos/ICreateUserDTO';
 
