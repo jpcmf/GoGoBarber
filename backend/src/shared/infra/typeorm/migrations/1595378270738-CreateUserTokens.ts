@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export default class CreateUserTokens1595378270738
   implements MigrationInterface {
@@ -35,16 +40,28 @@ export default class CreateUserTokens1595378270738
             default: 'now()',
           },
         ],
-        foreignKeys: [
-          {
-            name: 'TokenUser',
-            referencedTableName: 'users',
-            referencedColumnNames: ['id'],
-            columnNames: ['user_id'],
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-          },
-        ],
+        // foreignKeys: [
+        //   {
+        //     name: 'TokenUser',
+        //     referencedTableName: 'users',
+        //     referencedColumnNames: ['id'],
+        //     columnNames: ['user_id'],
+        //     onDelete: 'CASCADE',
+        //     onUpdate: 'CASCADE',
+        //   },
+        // ],
+      }),
+    );
+
+    await queryRunner.createForeignKey(
+      'user_tokens',
+      new TableForeignKey({
+        name: 'TokenUser',
+        columnNames: ['user_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'users',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }),
     );
   }
