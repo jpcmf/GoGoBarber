@@ -13,6 +13,6 @@ export default class ForgotPasswordController {
       email,
     });
 
-    return res.status(204).json(email);
+    return res.status(204).json();
   }
 }
