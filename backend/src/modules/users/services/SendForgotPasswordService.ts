@@ -49,7 +49,7 @@ class SendForgotPasswordService {
       },
       subject: '[GoBarber] Recuperação de senha',
       templateData: {
-        template: 'Olá, {{name}}: {{token}}',
+        template: 'Olá, {{name}}: {{link}}',
         variables: {
           name: user.name,
           link: `${process.env.APP_WEB_URL}/reset_password?token=${token}`,
