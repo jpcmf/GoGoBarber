@@ -5,7 +5,7 @@ import colors from '../../../styles/colors';
 
 interface ContainerProps {
   type?: 'success' | 'error' | 'info';
-  hasdescription?: boolean;
+  hasdescription?: number;
 }
 
 const toastTypeVariations = {
