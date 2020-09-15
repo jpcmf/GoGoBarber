@@ -33,4 +33,9 @@ export default {
   headerBg: '#28262E',
   headerBtn: '#999591',
   headerTxt: '#999591',
+  // dashboard
+  dashTitleh1: '#F4EDE8',
+  dashTitleh2: '#999591',
+  dashBgNext: '#3E3B47',
+  dashTxtClock: '#999591',
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiPower } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 import logo from '../../assets/logo.svg';
 import { useAuth } from '../../context/AuthContext';
@@ -12,7 +13,9 @@ const Header: React.FC = () => {
   return (
     <Container>
       <Content>
-        <img src={logo} alt="GoBaber" />
+        <Link to="/">
+          <img src={logo} alt="GoBaber" />
+        </Link>
 
         <Profile>
           <img src={user.avatar_url} alt={user.name} />

@@ -13,7 +13,7 @@ export const Content = styled.div`
   padding: 10px;
   align-items: center;
 
-  > img {
+  > a img {
     height: 80px;
   }
 `;
