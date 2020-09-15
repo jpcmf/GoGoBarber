@@ -29,4 +29,8 @@ export default {
   toSuccessTxt: '#2e656a',
   toErrorBg: '#fddede',
   toErrorTxt: '#c53030',
+  // header
+  headerBg: '#28262E',
+  headerBtn: '#999591',
+  headerTxt: '#999591',
 };
