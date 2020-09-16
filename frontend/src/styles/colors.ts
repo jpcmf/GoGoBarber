@@ -40,4 +40,8 @@ export default {
   dashTxtClock1: '#999591',
   dashTxtClock2: '#F4EDE8',
   dashLine: '#3E3B47',
+  // calendar
+  calendarBgDefault: '#3E3B47',
+  calendarTxtDefault: '#F4EDE8',
+  calendarTxtToday: '#232129',
 };
