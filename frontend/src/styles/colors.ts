@@ -37,5 +37,7 @@ export default {
   dashTitleh1: '#F4EDE8',
   dashTitleh2: '#999591',
   dashBgNext: '#3E3B47',
-  dashTxtClock: '#999591',
+  dashTxtClock1: '#999591',
+  dashTxtClock2: '#F4EDE8',
+  dashLine: '#3E3B47',
 };
