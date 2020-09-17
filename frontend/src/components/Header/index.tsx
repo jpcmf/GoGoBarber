@@ -18,7 +18,14 @@ const Header: React.FC = () => {
         </Link>
 
         <Profile>
-          <img src={user.avatar_url} alt={user.name} />
+          <img
+            src={
+              user.avatar_url
+                ? user.avatar_url
+                : `https://api.adorable.io/avatars/56/${user.name}.png`
+            }
+            alt={user.name}
+          />
 
           <div>
             <span>Bem-vindo,</span>
