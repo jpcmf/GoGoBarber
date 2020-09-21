@@ -73,12 +73,13 @@ export const AvatarInput = styled.div`
     width: 186px;
   }
 
-  button {
+  label {
     align-items: center;
     background-color: ${colors.brand};
     border-radius: 50%;
     border: 0;
     bottom: 0;
+    cursor: pointer;
     display: flex;
     height: 48px;
     justify-content: center;
@@ -93,6 +94,10 @@ export const AvatarInput = styled.div`
 
     svg {
       color: ${colors.secondary};
+    }
+
+    input {
+      display: none;
     }
   }
 `;
