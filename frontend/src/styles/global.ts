@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 import colors from './colors';
+import './css/animations.css';
 
 export default createGlobalStyle`
   * {
