@@ -7,7 +7,7 @@
   GoBarber full application
 </h3>
 
-<p align="center">In this repository, you'll find the final challenge for Rocketseat's bootcamp GoStack 11.0 🎓 (2020). <br/> It is a complete application, which includes a Back end, Front end and Mobile with TypeScript.</p>
+<p align="center">In this repository, you'll find the full application developed in the Rocketseat GoStack Bootcamp 11.0 🎓 (2020). <br/> The complete application includes the Back end, Front end and Mobile with Express, ReactJS, React Native and TypeScript.</p>
 
 <p align="center">
   <a href="#coffee-back-end">Back end</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
