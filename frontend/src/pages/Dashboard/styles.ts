@@ -41,6 +41,7 @@ export const Schedule = styled.div`
 `;
 
 export const NextAppointment = styled.section`
+  animation: 700ms ease-out 0s 1 fadeIn;
   margin-top: 64px;
 
   h2 {
@@ -115,6 +116,7 @@ export const Section = styled.section`
 `;
 
 export const Appointment = styled.div`
+  animation: 700ms ease-out 0s 1 fadeIn;
   display: flex;
   align-items: center;
 
@@ -128,6 +130,7 @@ export const Appointment = styled.div`
     display: flex;
     font-size: 16px;
     margin-left: auto;
+    width: 59px;
 
     svg {
       color: ${colors.brand};
@@ -159,6 +162,8 @@ export const Appointment = styled.div`
 `;
 
 export const Calendar = styled.aside`
+  animation: 700ms ease-out 0s 1 fadeIn;
+
   .DayPicker {
     border-radius: 10px;
   }
@@ -235,4 +240,11 @@ export const Calendar = styled.aside`
     border-radius: 10px;
     color: #232129 !important;
   }
+`;
+
+export const EmptyContent = styled.div`
+  animation: 700ms ease-out 0s 1 fadeIn;
+  color: ${colors.primary};
+  padding: 16px 0;
+  text-align: center;
 `;
