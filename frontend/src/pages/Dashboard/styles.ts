@@ -113,6 +113,13 @@ export const Section = styled.section`
   &:last-child {
     margin-top: 32px;
   }
+
+  .spinner {
+    padding: 30px;
+    > div {
+      filter: invert();
+    }
+  }
 `;
 
 export const Appointment = styled.div`
