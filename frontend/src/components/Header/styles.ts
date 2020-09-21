@@ -40,8 +40,14 @@ export const Profile = styled.div`
     color: ${colors.headerTxt};
   }
 
-  strong {
+  a {
     color: ${colors.brand};
+    text-decoration: none;
+    transition: all 300ms ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `;
 
