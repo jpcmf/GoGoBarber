@@ -7,6 +7,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
+import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import getValidationErrors from '../../utils/getValidationsErrors';
 
@@ -14,12 +15,13 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 import { Container, Content, PasswordGroup, AvatarInput } from './styles';
-import { useAuth } from '../../context/AuthContext';
 
 interface ProfileFormData {
   name: string;
   email: string;
+  old_password: string;
   password: string;
+  password_confirmation: string;
 }
 
 const Profile: React.FC = () => {
@@ -42,24 +44,64 @@ const Profile: React.FC = () => {
             .email(
               'O endereço usado no campo E-mail não é um endereço de e-mail válido.',
             ),
-          password: Yup.string().min(
-            6,
-            'O campo Senha deve ter no mínimo 6 digitos.',
-          ),
+          old_password: Yup.string(),
+          password: Yup.string()
+            .when('old_password', {
+              is: (val) => !!val.length,
+              then: Yup.string().required(
+                'O campo Nova senha é de preenchimento obrigatório.',
+              ),
+              otherwise: Yup.string(),
+            })
+            .notOneOf(
+              [Yup.ref('old_password'), null],
+              'Sua nova senha não pode ser igual à sua senha atual',
+            ),
+          password_confirmation: Yup.string()
+            .when('old_password', {
+              is: (val) => !!val.length,
+              then: Yup.string().required(
+                'O campo Confirmar senha é de preenchimento obrigatório.',
+              ),
+              otherwise: Yup.string(),
+            })
+            .oneOf([Yup.ref('password'), null], 'As senhas não coincidem.'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        await api.post('/users', data);
+        const {
+          name,
+          email,
+          old_password,
+          password,
+          password_confirmation,
+        } = data;
+
+        const formData = {
+          name,
+          email,
+          ...(old_password
+            ? {
+                old_password,
+                password,
+                password_confirmation,
+              }
+            : {}),
+        };
+
+        const response = await api.put('/profile', formData);
+
+        updateUser(response.data);
 
         history.push('/');
 
         addToast({
           type: 'success',
-          title: 'Cadastro realizado. 😃',
-          description: 'Você já pode fazer seu login no GoBarber.',
+          title: 'Cadastro atualizado. 😃',
+          description: 'Seu perfil foi atualizado com com sucesso.',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -70,13 +112,13 @@ const Profile: React.FC = () => {
 
         addToast({
           type: 'error',
-          title: 'Erro no cadastro. 😕',
+          title: 'Erro na atualização. 😕',
           description:
-            'Ocorreu um erro ao fazer o cadastro no GoBarber. Tente novamente.',
+            'Ocorreu um erro ao atualizar seu perfil. Tente novamente.',
         });
       }
     },
-    [history, addToast],
+    [history, addToast, updateUser],
   );
 
   const handleAvatarChange = useCallback(
@@ -98,6 +140,7 @@ const Profile: React.FC = () => {
     },
     [addToast, updateUser],
   );
+
   return (
     <Container>
       <header>
