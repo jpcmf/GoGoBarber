@@ -9,7 +9,7 @@ export default {
   primary: '#ee4d64',
   secondary: '#312e38',
   success: '#31DB7D',
-  white: '#fff',
+  white: '#f4ede8',
   brand: '#ff9000',
   // form variables
   inputBg: '#232129',
@@ -31,4 +31,11 @@ export default {
   toSuccessTxt: '#2e656a',
   toErrorBg: '#fddede',
   toErrorTxt: '#c53030',
+  // header
+  headerBg: '#28262E',
+  headerBtn: '#999591',
+  headerTxt: '#999591',
+  // provider
+  providerBg: '#3E3B47',
+  providerTimeTxt: '#999591',
 };
