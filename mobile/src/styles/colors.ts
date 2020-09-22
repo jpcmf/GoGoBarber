@@ -35,4 +35,7 @@ export default {
   headerBg: '#28262E',
   headerBtn: '#999591',
   headerTxt: '#999591',
+  // provider
+  providerBg: '#3E3B47',
+  providerTimeTxt: '#999591',
 };
