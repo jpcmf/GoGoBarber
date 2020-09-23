@@ -29,7 +29,6 @@ export const HeaderTitle = styled.Text`
 export const Username = styled.Text`
   color: ${colors.brand};
   font-family: 'RobotoSlab-Medium';
-  font-weight: bold;
 `;
 
 export const ProfileButton = styled.TouchableOpacity``;
@@ -62,7 +61,7 @@ export const ProviderContainer = styled(RectButton)`
 
 export const ProviderAvatar = styled.Image`
   border-radius: 36px;
-  border: 1px solid ${colors.secondary};
+
   height: 72px;
   width: 72px;
 `;
