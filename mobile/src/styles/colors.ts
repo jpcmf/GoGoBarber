@@ -38,4 +38,5 @@ export default {
   // provider
   providerBg: '#3E3B47',
   providerTimeTxt: '#999591',
+  providerNameTxt: '#232129',
 };
