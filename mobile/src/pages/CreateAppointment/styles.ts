@@ -66,3 +66,27 @@ export const ProviderName = styled.Text<{ selected: boolean }>`
   font-size: 16px;
   margin-left: 8px;
 `;
+
+export const DateTimePickerWrapper = styled.View``;
+
+export const DateTimePickerTitle = styled.Text`
+  color: ${colors.white};
+  font-family: 'RobotoSlab-Medium';
+  font-size: 25px;
+  margin: 0 24px 24px;
+`;
+
+export const OpenDatePickerButton = styled(RectButton)`
+  align-items: center;
+  background-color: ${colors.brand};
+  border-radius: 10px;
+  height: 46px;
+  justify-content: center;
+  margin: 0 24px;
+`;
+
+export const OpenDatePickerButtonText = styled.Text`
+  color: ${colors.datepickerSelectButtonText};
+  font-family: 'RobotoSlab-Medium';
+  font-size: 16px;
+`;

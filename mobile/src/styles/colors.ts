@@ -39,4 +39,6 @@ export default {
   providerBg: '#3E3B47',
   providerTimeTxt: '#999591',
   providerNameTxt: '#232129',
+  // datepicker
+  datepickerSelectButtonText: '#232129',
 };
