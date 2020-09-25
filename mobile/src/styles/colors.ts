@@ -1,15 +1,25 @@
 export default {
+  // new schema of colors
+  orange: '#ff9000',
+  white: '#f4ede8',
+  gray: '#999591',
+  grayHard: '#666360',
+  shape: '#3E3B47',
+  blackMedium: '#28262E',
+  background: '#312E38',
+  inputs: '#232129',
+  //
   black: '#000',
   danger: '#c53030',
   dark: '#444',
-  darkGrey: '#999',
+  darkGrey: '#232129',
   grey: '#ddd',
   info: '#4d85ee',
   lightGrey: '#eee',
   primary: '#ee4d64',
   secondary: '#312e38',
   success: '#31DB7D',
-  white: '#f4ede8',
+  // white: '#f4ede8',
   brand: '#ff9000',
   // form variables
   inputBg: '#232129',
@@ -41,4 +51,8 @@ export default {
   providerNameTxt: '#232129',
   // datepicker
   datepickerSelectButtonText: '#232129',
+  // section time
+  sectionTimeTitle: '#999591',
+  sectionTimeBg: '#3E3B47',
+  sectionTimeButtonSelectText: '#232129',
 };
