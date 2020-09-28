@@ -8,7 +8,7 @@ export default {
   blackMedium: '#28262E',
   background: '#312E38',
   inputs: '#232129',
-  //
+  // old schema of colors
   black: '#000',
   danger: '#c53030',
   dark: '#444',
@@ -18,7 +18,7 @@ export default {
   lightGrey: '#eee',
   primary: '#ee4d64',
   secondary: '#312e38',
-  success: '#31DB7D',
+  success: '#04D361',
   // white: '#f4ede8',
   brand: '#ff9000',
   // form variables
