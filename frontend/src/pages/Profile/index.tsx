@@ -45,27 +45,26 @@ const Profile: React.FC = () => {
               'O endereço usado no campo E-mail não é um endereço de e-mail válido.',
             ),
           old_password: Yup.string(),
-          password: Yup.string()
-            .when('old_password', {
-              is: (val) => !!val.length,
-              then: Yup.string().required(
-                'O campo Nova senha é de preenchimento obrigatório.',
+          password: Yup.string().when('old_password', {
+            is: (val) => !!val.length,
+            then: Yup.string()
+              .required('O campo Nova senha é de preenchimento obrigatório.')
+              .notOneOf(
+                [Yup.ref('old_password'), null],
+                'Sua nova senha não pode ser igual à sua senha atual',
               ),
-              otherwise: Yup.string(),
-            })
-            .notOneOf(
-              [Yup.ref('old_password'), null],
-              'Sua nova senha não pode ser igual à sua senha atual',
-            ),
-          password_confirmation: Yup.string()
-            .when('old_password', {
-              is: (val) => !!val.length,
-              then: Yup.string().required(
+            otherwise: Yup.string(),
+          }),
+
+          password_confirmation: Yup.string().when('old_password', {
+            is: (val) => !!val.length,
+            then: Yup.string()
+              .required(
                 'O campo Confirmar senha é de preenchimento obrigatório.',
-              ),
-              otherwise: Yup.string(),
-            })
-            .oneOf([Yup.ref('password'), null], 'As senhas não coincidem.'),
+              )
+              .oneOf([Yup.ref('password'), null], 'As senhas não coincidem.'),
+            otherwise: Yup.string(),
+          }),
         });
 
         await schema.validate(data, {
