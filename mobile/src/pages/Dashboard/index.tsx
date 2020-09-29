@@ -1,6 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import colors from '../../styles/colors';
 import api from '../../services/api';
@@ -29,7 +28,7 @@ import Provider from './interface';
 const Dashboard: React.FC = () => {
   const [providers, setProviders] = useState<Provider[]>([]);
 
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
   const { navigate } = useNavigation();
 
   useEffect(() => {
@@ -60,10 +59,6 @@ const Dashboard: React.FC = () => {
           <UserAvatar source={{ uri: user.avatar_url }} />
         </ProfileButton>
       </Header>
-
-      <Button title="logout" onPress={signOut}>
-        logout
-      </Button>
 
       <ProvidersList
         data={providers}
