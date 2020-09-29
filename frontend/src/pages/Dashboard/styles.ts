@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 import colors from '../../styles/colors';
+import ArrowLeft from '../../assets/arrow-left.png';
+import ArrowRight from '../../assets/arrow-right.png';
 
 export const Container = styled.div``;
 
@@ -188,12 +190,18 @@ export const Calendar = styled.aside`
 
   .DayPicker-NavButton {
     color: #999591 !important;
+    transition: opacity 300ms ease;
   }
 
   .DayPicker-NavButton--prev {
+    background: url(${ArrowLeft}) no-repeat center;
     right: auto;
     left: 1.5em;
     margin-right: 0;
+  }
+
+  .DayPicker-NavButton--next {
+    background: url(${ArrowRight}) no-repeat center;
   }
 
   .DayPicker-Month {
@@ -215,6 +223,10 @@ export const Calendar = styled.aside`
     }
   }
 
+  .DayPicker-Weekday {
+    color: #666360;
+  }
+
   .DayPicker-Day {
     border-radius: 10px;
     color: ${colors.calendarTxtDefault};
@@ -234,6 +246,7 @@ export const Calendar = styled.aside`
   }
 
   .DayPicker-Day--today {
+    color: #fff;
     font-weight: normal;
   }
 
