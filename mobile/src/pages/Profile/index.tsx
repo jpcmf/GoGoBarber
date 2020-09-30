@@ -12,6 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+import ImagePicker from 'react-native-image-picker';
 import getValidationErrors from '../../utils/getValidationsErrors';
 import api from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
@@ -28,12 +29,13 @@ import {
   LogoutButton,
   UserAvatarButton,
   UserAvatar,
+  UserAvatarIcon,
 } from './styles';
 
-import { SignUpFormData } from './interface';
+import { ProfileFormData } from './interface';
 
 const Profile: React.FC = () => {
-  const { user, signOut } = useAuth();
+  const { user, signOut, updateUser } = useAuth();
 
   const formRef = useRef<FormHandles>(null);
   const navigation = useNavigation();
@@ -44,7 +46,7 @@ const Profile: React.FC = () => {
   const confirmPasswordInputRef = useRef<TextInput>(null);
 
   const handleSignUp = useCallback(
-    async (data: SignUpFormData) => {
+    async (data: ProfileFormData) => {
       try {
         formRef.current?.setErrors({});
 
@@ -57,24 +59,60 @@ const Profile: React.FC = () => {
             .email(
               'O endereço usado no campo E-mail não é um endereço de e-mail válido.',
             ),
-          password: Yup.string().min(
-            6,
-            'O campo Senha deve ter no mínimo 6 digitos.',
-          ),
+          old_password: Yup.string(),
+          password: Yup.string().when('old_password', {
+            is: (val) => !!val.length,
+            then: Yup.string()
+              .required('O campo Nova senha é de preenchimento obrigatório.')
+              .notOneOf(
+                [Yup.ref('old_password'), null],
+                'Sua nova senha não pode ser igual à sua senha atual',
+              ),
+            otherwise: Yup.string(),
+          }),
+
+          password_confirmation: Yup.string().when('old_password', {
+            is: (val) => !!val.length,
+            then: Yup.string()
+              .required(
+                'O campo Confirmar senha é de preenchimento obrigatório.',
+              )
+              .oneOf([Yup.ref('password'), null], 'As senhas não coincidem.'),
+            otherwise: Yup.string(),
+          }),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        await api.post('/users', data);
+        const {
+          name,
+          email,
+          old_password,
+          password,
+          password_confirmation,
+        } = data;
 
-        Alert.alert(
-          'Cadastro realizado 😃.',
-          'Você já pode fazer seu login no GoBarber.',
-        );
+        const formData = {
+          name,
+          email,
+          ...(old_password
+            ? {
+                old_password,
+                password,
+                password_confirmation,
+              }
+            : {}),
+        };
 
-        navigation.navigate('SignIn');
+        const response = await api.put('/profile', formData);
+
+        updateUser(response.data);
+
+        Alert.alert('😃 Perfil atualizado com sucesso.');
+
+        navigation.goBack();
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -85,17 +123,50 @@ const Profile: React.FC = () => {
         }
 
         Alert.alert(
-          'Erro no cadastro 😕.',
-          'Ocorreu um erro ao fazer o cadastro no GoBarber. Tente novamente.',
+          'Erro ao atualizar seu perfil 😕.',
+          'Ocorreu um erro ao atualizar o perfil no GoBarber. Tente novamente.',
         );
       }
     },
-    [navigation],
+    [navigation, updateUser],
   );
 
   const handleBack = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
+
+  const handleUpdateAvatar = useCallback(() => {
+    ImagePicker.showImagePicker(
+      {
+        title: 'Selecione seu avatar',
+        cancelButtonTitle: 'Cancelar',
+        takePhotoButtonTitle: 'Usar câmera',
+        chooseFromLibraryButtonTitle: 'Escolher da galeria',
+      },
+      (response) => {
+        if (response.didCancel) {
+          return;
+        }
+
+        if (response.error) {
+          Alert.alert('Erro ao atualizar seu avatar', response.error);
+        }
+
+        const data = new FormData();
+
+        data.append('avatar', {
+          uri: response.uri,
+          type: 'image/jpeg',
+          name: `${user.id}.jpg`,
+        });
+
+        api.patch('/users/avatar', data).then((apiResponse) => {
+          updateUser(apiResponse.data);
+        });
+      },
+    );
+  }, [user.id, updateUser]);
+
   return (
     <>
       <KeyboardAvoidingView
@@ -118,14 +189,21 @@ const Profile: React.FC = () => {
               </LogoutButton>
             </ActionsWrapper>
 
-            <UserAvatarButton onPress={() => {}}>
+            <UserAvatarButton onPress={handleUpdateAvatar}>
               <UserAvatar source={{ uri: user.avatar_url }} />
+              <UserAvatarIcon>
+                <Icon name="camera" size={24} color={colors.secondary} />
+              </UserAvatarIcon>
             </UserAvatarButton>
             <View>
               <Title>Meu perfil</Title>
             </View>
 
-            <Form ref={formRef} onSubmit={handleSignUp}>
+            <Form
+              initialData={{ name: user.name, email: user.email }}
+              ref={formRef}
+              onSubmit={handleSignUp}
+            >
               <Input
                 autoCapitalize="words"
                 returnKeyType="next"
