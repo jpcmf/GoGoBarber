@@ -36,3 +36,13 @@ export const Title = styled.Text`
   margin: 24px 0;
   text-align: left;
 `;
+
+export const UserAvatarIcon = styled.View`
+  align-items: center;
+  background-color: ${colors.brand};
+  border-radius: 25px;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  width: 50px;
+`;
