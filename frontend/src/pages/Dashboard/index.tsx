@@ -19,7 +19,7 @@ import {
   EmptyContent,
 } from './styles';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/auth';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 import api from '../../services/api';
