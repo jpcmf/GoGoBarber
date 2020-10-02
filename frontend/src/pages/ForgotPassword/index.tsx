@@ -5,7 +5,7 @@ import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 
-import { useToast } from '../../context/ToastContext';
+import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationsErrors';
 
 import { ReactComponent as Logo } from '../../assets/logo.svg';
