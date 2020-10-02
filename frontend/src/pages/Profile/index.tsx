@@ -7,8 +7,8 @@ import { Link, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
-import { useAuth } from '../../context/AuthContext';
-import { useToast } from '../../context/ToastContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationsErrors';
 
 import Input from '../../components/Input';

@@ -3,7 +3,7 @@ import { FiPower } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import logo from '../../assets/logo.svg';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/auth';
 
 import { Container, Content, Profile, Logout } from './styles';
 

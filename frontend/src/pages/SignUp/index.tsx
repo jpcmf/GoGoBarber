@@ -7,7 +7,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
-import { useToast } from '../../context/ToastContext';
+import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationsErrors';
 
 import { ReactComponent as Logo } from '../../assets/logo.svg';
