@@ -38,12 +38,11 @@ export const Container = styled.div<ContainerProps>`
       color: ${colors.brand};
     `}
 
-    ${(props) =>
-      props.isFilled &&
-      css`
-        color: ${colors.brand};
-      `}
-
+  ${(props) =>
+    props.isFilled &&
+    css`
+      color: ${colors.brand};
+    `}
 
   input {
     background-color: transparent;
