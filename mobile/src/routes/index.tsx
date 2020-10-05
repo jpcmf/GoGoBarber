@@ -3,7 +3,7 @@ import { ActivityIndicator, View } from 'react-native';
 import AuthRoutes from './auth.routes';
 import AppRoutes from './app.routes';
 
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/auth';
 
 import colors from '../styles/colors';
 
