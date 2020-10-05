@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { format } from 'date-fns';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/auth';
 import api from '../../services/api';
 
 import Provider from '../Dashboard/interface';

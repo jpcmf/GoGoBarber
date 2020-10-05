@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import colors from '../../styles/colors';
 import api from '../../services/api';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/auth';
 
 import {
   Container,

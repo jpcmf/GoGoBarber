@@ -15,7 +15,7 @@ import { FormHandles } from '@unform/core';
 import ImagePicker from 'react-native-image-picker';
 import getValidationErrors from '../../utils/getValidationsErrors';
 import api from '../../services/api';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/auth';
 import colors from '../../styles/colors';
 
 import Input from '../../components/Input';

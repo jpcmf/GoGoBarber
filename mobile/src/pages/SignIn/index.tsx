@@ -15,7 +15,7 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import getValidationErrors from '../../utils/getValidationsErrors';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/auth';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
