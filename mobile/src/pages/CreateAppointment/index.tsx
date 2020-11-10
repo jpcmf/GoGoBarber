@@ -159,7 +159,13 @@ const CreateAppointment: React.FC = () => {
         </BackButton>
 
         <HeaderTitle>Barbeiros e Cabeleireiros</HeaderTitle>
-        <UserAvatar source={{ uri: user.avatar_url }} />
+        <UserAvatar
+          source={{
+            uri: user.avatar_url
+              ? user.avatar_url
+              : `https://api.hello-avatar.com/adorables/56/${user.name}`,
+          }}
+        />
       </Header>
 
       <Main>
@@ -174,7 +180,13 @@ const CreateAppointment: React.FC = () => {
                 onPress={() => handleSelectProvider(provider.id)}
                 selected={provider.id === selectedProvider}
               >
-                <ProviderAvatar source={{ uri: provider.avatar_url }} />
+                <ProviderAvatar
+                  source={{
+                    uri: provider.avatar_url
+                      ? provider.avatar_url
+                      : `https://api.hello-avatar.com/adorables/32/${provider.name}`,
+                  }}
+                />
                 <ProviderName selected={provider.id === selectedProvider}>
                   {provider.name}
                 </ProviderName>

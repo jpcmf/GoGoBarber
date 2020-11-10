@@ -190,7 +190,13 @@ const Profile: React.FC = () => {
             </ActionsWrapper>
 
             <UserAvatarButton onPress={handleUpdateAvatar}>
-              <UserAvatar source={{ uri: user.avatar_url }} />
+              <UserAvatar
+                source={{
+                  uri: user.avatar_url
+                    ? user.avatar_url
+                    : `https://api.hello-avatar.com/adorables/186/${user.name}`,
+                }}
+              />
               <UserAvatarIcon>
                 <Icon name="camera" size={24} color={colors.secondary} />
               </UserAvatarIcon>

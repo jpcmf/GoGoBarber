@@ -25,6 +25,8 @@ import {
 
 import Provider from './interface';
 
+// import EmptyListMessage from '../../components/EmptyListMessage';
+
 const Dashboard: React.FC = () => {
   const [providers, setProviders] = useState<Provider[]>([]);
 
@@ -56,7 +58,13 @@ const Dashboard: React.FC = () => {
           <Username>{user.name}</Username>
         </HeaderTitle>
         <ProfileButton onPress={navigateToProfile}>
-          <UserAvatar source={{ uri: user.avatar_url }} />
+          <UserAvatar
+            source={{
+              uri: user.avatar_url
+                ? user.avatar_url
+                : `https://api.hello-avatar.com/adorables/56/${user.name}`,
+            }}
+          />
         </ProfileButton>
       </Header>
 
@@ -70,7 +78,13 @@ const Dashboard: React.FC = () => {
           <ProviderContainer
             onPress={() => navigateToCreateAppointment(provider.id)}
           >
-            <ProviderAvatar source={{ uri: provider.avatar_url }} />
+            <ProviderAvatar
+              source={{
+                uri: provider.avatar_url
+                  ? provider.avatar_url
+                  : `https://api.hello-avatar.com/adorables/72/${provider.name}`,
+              }}
+            />
             <ProviderInfo>
               <ProviderName>{provider.name}</ProviderName>
 
@@ -86,6 +100,7 @@ const Dashboard: React.FC = () => {
             </ProviderInfo>
           </ProviderContainer>
         )}
+        // ListEmptyComponent={<EmptyListMessage />}
       />
     </Container>
   );
